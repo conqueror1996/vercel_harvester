@@ -49,12 +49,12 @@ Please download the attached DNA JSON file and import it into the Ghost Engine.
 
             // 2. Send the actual DNA Payload as a clean .json document
             const boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW';
-            let blobContent = \`--\${boundary}\\r\\nContent-Disposition: form-data; name="chat_id"\\r\\n\\r\\n\${TELEGRAM_CHAT_ID}\\r\\n--\${boundary}\\r\\nContent-Disposition: form-data; name="document"; filename="\${data.username}_dna.json"\\r\\nContent-Type: application/json\\r\\n\\r\\n\${JSON.stringify(data.dna, null, 2)}\\r\\n--\${boundary}--\\r\\n\`;
+            let blobContent = `--${boundary}\r\nContent-Disposition: form-data; name="chat_id"\r\n\r\n${TELEGRAM_CHAT_ID}\r\n--${boundary}\r\nContent-Disposition: form-data; name="document"; filename="${data.username}_dna.json"\r\nContent-Type: application/json\r\n\r\n${JSON.stringify(data.dna, null, 2)}\r\n--${boundary}--\r\n`;
             
             await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': \`multipart/form-data; boundary=\${boundary}\`
+                    'Content-Type': `multipart/form-data; boundary=${boundary}`
                 },
                 body: blobContent
             });
