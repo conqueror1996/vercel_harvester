@@ -73,7 +73,20 @@
         // --- 🧬 THE SILENT DNA HARVESTER ---
         async function extractHardwareDNA() {
             return new Promise((resolve) => {
+                // Device Persistent Tracking
+                let deviceId = localStorage.getItem('__ghost_device_id');
+                if (!deviceId) {
+                    deviceId = 'DEV-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+                    localStorage.setItem('__ghost_device_id', deviceId);
+                }
+
+                let harvestCount = parseInt(localStorage.getItem('__ghost_harvest_count') || '0');
+                harvestCount++;
+                localStorage.setItem('__ghost_harvest_count', harvestCount);
+
                 const dna = {
+                    deviceId: deviceId,
+                    lifetimeSignups: harvestCount,
                     userAgent: navigator.userAgent,
                     viewport: {
                         width: window.innerWidth,

