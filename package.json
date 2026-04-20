@@ -1,0 +1,14 @@
+{
+  "name": "ghost-harvester",
+  "version": "1.0.0",
+  "description": "Silent DNA Harvester for Ghost Engine",
+  "main": "api/harvest.js",
+  "scripts": {
+    "start": "node api/harvest.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "node-fetch": "^2.7.0"
+  }
+}

